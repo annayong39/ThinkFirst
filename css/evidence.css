@@ -1,0 +1,187 @@
+/* =====================================================================
+   ThinkFirst — EVIDENCE: search bar, search results, article boxes
+   ===================================================================== */
+
+/* ---------- Evidence: Thinky's recommended articles, one box per article, wired to its word ---------- */
+.esearch{position:relative;margin-top:12px;display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:2px 3px 2px 12px;transition:border-color .15s,box-shadow .15s}
+.esearch:hover{border-color:var(--accent-line)} /* same hover + selected look as "Add your own evidence" and the tools */
+.esearch:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.esearch input,.esearch textarea{flex:1;min-width:0;border:0;background:none;font-size:13px;padding:7px 0;outline:none}
+.esearch textarea{resize:none;overflow-y:auto;overflow-x:hidden;font:inherit;font-size:13px;line-height:1.2;color:var(--ink)}
+.esearch textarea::placeholder{color:var(--muted);opacity:1}
+.esearch input::-webkit-search-cancel-button{display:none}
+.esearch button{flex:none;width:32px;height:32px;border-radius:50%;border:0;background:var(--lilac-line);color:var(--ink);display:flex;align-items:center;justify-content:center;padding:0;transition:background-color .18s ease,transform .18s ease}
+.esearch button:hover{background:color-mix(in srgb,var(--lilac-line) 78%,var(--accent));transform:scale(1.08)}
+body:not(.ev-open) .esearch{display:none}
+/* Evidence keeps a separate heading column beside the canvas. */
+.layer[aria-labelledby="l2"]{grid-template-columns:190px minmax(0,1fr)}
+body.ev-open .layer[aria-labelledby="l2"]{--evidence-toolbar-space:80px;padding-top:var(--evidence-toolbar-space)}
+.evidence-toolbar{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:min(850px,calc(100% - 32px))}
+body:not(.ev-open) .evidence-toolbar{display:none}
+.evidence-toolbar-item{display:flex;min-width:0}
+.evidence-toolbar .esearch,.evidence-toolbar .addev,.evidence-toolbar .tool{box-sizing:border-box;margin:0;width:100%;height:46px;min-height:46px;align-items:center}
+.evidence-toolbar .evtoolbox{display:block;margin:0;width:100%}
+.evidence-toolbar .tool{text-align:left}
+/* Keep all three locked messages on the same vertical axis while the map is empty. */
+@media(min-width:761px){.layer:has(.lock){grid-template-columns:270px minmax(0,1fr)}}
+.layer[aria-labelledby="l2"] .esearch{margin-top:0;padding:3px 4px 3px 14px}
+.layer[aria-labelledby="l2"] .esearch input,.layer[aria-labelledby="l2"] .esearch textarea{font-size:14px;padding:9px 0}
+/* All three compact controls center their text against a 36px icon. */
+.layer[aria-labelledby="l2"] .esearch textarea{box-sizing:border-box;line-height:18px;height:36px;min-height:0;padding:9px 0}
+.layer[aria-labelledby="l2"] .esearch,.addev{width:100%;box-sizing:border-box}
+.evidence-toolbar .addev .atext{min-height:0;padding:0;line-height:1.2}
+.evidence-toolbar .tool span:last-child{line-height:1.2}
+.evidence-toolbar .tool .ticon{width:36px;height:36px}
+.layer[aria-labelledby="l2"] .esearch button{width:36px;height:36px}
+/* + Add your own evidence: the same pill as the search bar above it (cream, line border, round lilac button on the right) */
+.addev{display:flex;align-items:center;gap:8px;width:100%;margin-top:10px;padding:3px 4px 3px 14px;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;font:inherit;font-size:14px;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.addev .atext{flex:1;min-width:0;padding:9px 0;line-height:1.2;color:var(--muted)} /* same light grey as the search bar's hint text */
+.addev .aicon{flex:none;width:36px;height:36px;border-radius:50%;background:var(--lilac-line);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;line-height:1;transition:background-color .18s ease,transform .18s ease}
+.addev:hover .aicon{background:color-mix(in srgb,var(--lilac-line) 78%,var(--accent));transform:scale(1.08)}
+.addev:hover{border-color:var(--accent-line)}
+.addev:focus-visible,.addev:active{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+/* Tools: small pills in the same family, with a round lilac icon */
+.evtoolbox{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.evtoolbox .tlabel{flex-basis:100%;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.tool{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:3px 14px 3px 3px;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;font:inherit;font-size:14px;font-weight:400;color:var(--muted);cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+.tool span:last-child{min-width:0;text-align:left;color:var(--muted)}
+.tool .ticon{flex:none;width:30px;height:30px;border-radius:50%;background:var(--lilac-line);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:15px;font-weight:600;transition:background-color .18s ease,transform .18s ease}
+.tool:hover .ticon{background:color-mix(in srgb,var(--lilac-line) 78%,var(--accent));transform:scale(1.08)}
+.tool:hover{border-color:var(--accent-line)}
+.tool:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.tool[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.tool[aria-pressed="true"] .ticon{background:var(--accent);color:var(--paper)}
+body:not(.ev-open) .addev,body:not(.ev-open) .evtoolbox{display:none}
+/* Text tool on: a text cursor over the Evidence section */
+body.tool-text .layer[aria-labelledby="l2"]{cursor:text}
+/* Text tool on: a soft grey "Add text" follows the cursor, showing where the note will appear (js/tools.js) */
+.textghost{position:fixed;left:0;top:0;z-index:40;pointer-events:none;font-size:15px;font-weight:600;color:var(--muted);opacity:.55;white-space:nowrap;transform:translate(6px,-2px);transition:opacity .12s}
+.textghost[hidden]{display:none}
+/* notes written with the Text tool (js/tools.js); positioned from the Evidence section's top-left */
+.evnotes{position:absolute;inset:0;pointer-events:none;z-index:5}
+body.ev-open .evnotes{top:var(--evidence-toolbar-space)}
+.evnotes[hidden]{display:none}
+.evnote{position:absolute;pointer-events:auto;width:210px;background:var(--paper);border:1.5px solid var(--accent-line);border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.1);animation:pop .25s cubic-bezier(.3,1.5,.5,1) both;cursor:auto}
+.evnote.dragging{z-index:6;box-shadow:0 14px 28px rgba(0,0,0,.18)}
+.evnote .nhead{display:flex;align-items:center;justify-content:space-between;padding:3px 4px 0 10px;cursor:grab;touch-action:none;user-select:none}
+.evnote.dragging .nhead{cursor:grabbing}
+.evnote .nhead span{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--accent)}
+.evnote .nx{width:24px;height:24px;font-size:11px}
+.evnote textarea{display:block;width:100%;min-height:44px;resize:none;border:0;background:none;padding:2px 10px 9px;font:inherit;font-size:13px;line-height:1.45;color:var(--ink);overflow:hidden}
+.evnote textarea:focus{outline:none}
+.evnote:focus-within{border-color:var(--accent)}
+#row-search:empty{display:none}
+#row-evidence:empty{min-height:0}
+#row-search{display:flex;flex-direction:column;gap:26px;margin-bottom:26px}
+/* Closed result frames keep their cards visible without reserving a tall row. */
+#row-search.all-bare{height:0;margin-bottom:0}
+.evidence-finish{display:flex;justify-content:center;margin-bottom:8px}
+.search-board{scroll-margin-top:76px;padding:14px 16px 16px;border:1.5px dashed var(--accent-line);border-radius:18px;background:color-mix(in srgb,var(--accent-soft) 55%,var(--bg))}
+.search-board.bare{border:0;background:none;padding:0}
+.srhead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.srhead b{font-size:14px}
+.srhead .x{margin-left:auto}
+.srrow{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.artcard-slot{flex:none;width:240px;max-width:100%;visibility:hidden;pointer-events:none}
+#row-evidence .evidence-slot{flex:none;width:270px;max-width:100%;visibility:hidden;pointer-events:none}
+.srrow .artcard.entering{animation:svrise .5s var(--ease-pop) both}
+/* folder menu on article cards ("Move" / "Save"): pill button + a list of folders with their colours (js/evidence.js folderMenu) */
+.fmenu{position:relative;flex:none;min-width:0}
+.fbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);border-radius:999px;font:inherit;font-size:11.5px;font-weight:600;color:var(--accent);padding:4px 10px 4px 11px;cursor:pointer;transition:border-color .15s,background .15s}
+.fbtn:hover,.fbtn[aria-expanded="true"]{border-color:var(--accent-line);background:var(--accent-soft)}
+.fbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fchev{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.fbtn[aria-expanded="true"] .fchev{transform:translateY(1px) rotate(225deg)}
+.fpop{position:absolute;left:0;top:calc(100% + 6px);z-index:10;width:220px;display:flex;flex-direction:column;gap:2px;background:var(--paper);border:1.5px solid var(--accent-line);border-radius:14px;padding:6px;box-shadow:0 10px 24px rgba(0,0,0,.14);animation:pop .2s cubic-bezier(.3,1.5,.5,1) both;transform-origin:top left;cursor:auto}
+.fpop[hidden]{display:none}
+.fhead{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);padding:5px 8px 4px}
+.fopt{--f:var(--accent-soft);--b:var(--accent);display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;border-radius:9px;padding:7px 8px;font:inherit;font-size:12.5px;font-weight:500;color:var(--ink);text-align:left;cursor:pointer}
+.fopt:hover,.fopt:focus-visible{background:var(--f);outline:none}
+.fopt i{flex:none;width:12px;height:9px;border-radius:2px 3px 2px 2px;background:var(--b)}
+.fopt span{flex:1;min-width:0}
+.fopt.on{font-weight:700}
+.fopt .ftag{flex:none;font-size:10.5px;font-weight:600;color:var(--muted)}
+.fopt.on .ftag{color:var(--accent);font-size:12px}
+.artcard.menuopen{z-index:8} /* the open menu sits above the next card */
+/* "+ Save to folder": a round + then the words; once saved it shows the folder's colour and name */
+.fbtn{max-width:100%}
+.fplus{flex:none;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:-5px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:14px;font-weight:700;line-height:1}
+.fbtn.saved{--f:var(--accent-soft);--b:var(--accent);background:var(--f);border-color:color-mix(in srgb,var(--b) 60%,transparent);color:var(--ink)}
+.fbtn.saved i{flex:none;width:12px;height:9px;border-radius:2px 3px 2px 2px;background:var(--b)}
+.fbtn.saved .fname{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* unsaved cards are neutral; a saved card's border takes its folder's colour */
+.artcard:not(.saved){--b:var(--accent-line);--f:var(--accent-soft)}
+/* "Create a new folder" at the bottom of the list */
+.fnew{display:flex;align-items:center;gap:8px;width:100%;margin-top:4px;padding:8px;border:0;border-top:1px dashed var(--line);border-radius:0 0 9px 9px;background:none;font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);text-align:left;cursor:pointer}
+.fnew .fplus{margin-left:0;width:16px;height:16px;font-size:12px}
+.fnew:hover{background:var(--accent-soft)}
+.fnew[hidden],.fform[hidden]{display:none}
+.fform{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;padding:8px 4px 2px;border-top:1px dashed var(--line)}
+.fform input{flex:1;min-width:0;border:1px solid var(--accent-line);border-radius:8px;padding:6px 8px;font:inherit;font-size:12.5px;background:var(--sheet);color:var(--ink)}
+.fform input:focus{outline:2px solid var(--accent);outline-offset:0}
+.fmake{flex:none;border:0;border-radius:999px;padding:6px 12px;background:var(--accent);color:var(--paper);font:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:filter .18s ease,transform .18s ease}
+.fmake:hover{transform:translateY(-2px)}
+.fmake:hover{filter:brightness(1.08)}
+.ferr{flex-basis:100%;font-size:11.5px;color:var(--warn)}
+.ferr:empty{display:none}
+#row-art{margin-bottom:22px}
+/* recommended articles: 4–5 free cards for the whole question, in one wrapping row (no wires to words) */
+#row-art:not(.cols){display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-start}
+#row-art:empty{display:none;margin:0}
+/* articles sit in one column under their own word card, so wires drop straight down and never cross */
+#row-art.cols{display:block;position:relative}
+#row-art.cols .artcol{position:absolute;top:0;display:flex;flex-direction:column;gap:16px}
+#row-art.cols .artcol .artcard{width:100%}
+#row-art:not(.cols) .artcol{display:contents}
+.artcard{--f:var(--media-f);--b:var(--media-b);position:relative;z-index:3;width:240px;max-width:100%;display:flex;flex-direction:column;gap:8px;background:var(--sheet);border:1.5px solid color-mix(in srgb,var(--b) 70%,var(--bg));border-radius:16px;padding:12px 13px 11px;box-shadow:0 8px 20px -12px rgba(45,54,47,.4)}
+.artcard.sprout{animation:sprout .55s cubic-bezier(.3,1.5,.5,1) both;transform-origin:50% 0}
+.artcard{cursor:grab;user-select:none;-webkit-user-select:none}
+.artcard.dragging{cursor:grabbing;z-index:6;box-shadow:0 18px 36px rgba(0,0,0,.22)}
+.artcard .ahead{touch-action:none;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.artcard .acat{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--f);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:0 1 auto}
+.artcard .acat i{width:11px;height:8px;border-radius:2px 3px 2px 2px;background:var(--b);display:inline-block;flex:none}
+.artcard .amove{position:relative;flex:none;margin-left:auto}
+.artcard .ax{flex:none;width:26px;height:26px;font-size:12px;margin-right:-4px}
+.artcard .ax:hover{background:var(--line);color:var(--ink)}
+.artcard .amove select{appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:999px;font-size:11.5px;font-weight:600;color:var(--accent);padding:4px 22px 4px 10px;min-height:28px;cursor:pointer;width:76px}
+.artcard .amove::after{content:'';position:absolute;right:9px;top:50%;width:6px;height:6px;border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.artcard h4{margin:0;font-size:15.5px;font-weight:700;line-height:1.25}
+.artcard h4 mark{background:linear-gradient(180deg,transparent 40%,var(--marker) 40%,var(--marker) 92%,transparent 92%);color:inherit;padding:0 2px}
+.artcard .sum{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink)}
+.artcard .aangle{align-self:flex-start;font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px dashed var(--accent-line);border-radius:999px;padding:2px 9px}
+.artcard .meta{font-size:12px;line-height:1.4;color:var(--muted)}
+.artcard .go,.evidence-tab .go{padding-top:8px;border-top:1px dashed var(--rule);font-size:12.5px;font-weight:600;color:var(--accent);display:flex;justify-content:space-between;gap:8px;text-decoration:none;transition:color .18s ease,background-color .18s ease}
+.artcard button.go{width:100%;background:none;border:0;border-top:1px dashed var(--rule);font:inherit;font-size:12.5px;font-weight:600;text-align:left;cursor:pointer}
+.artcard a.go:hover,.artcard button.go:hover,.evidence-tab a.go:hover{color:color-mix(in srgb,var(--accent) 72%,#21123f);background:var(--accent-soft);text-decoration:underline;text-underline-offset:3px}
+.artcard .go:focus-visible,.evidence-tab .go:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.artcard button.go:disabled{cursor:wait;opacity:.65}
+.artcard .go.unavailable{color:var(--muted);font-weight:400}
+.artcard .go:hover span:last-child,.evidence-tab .go:hover span:last-child{transform:translate(2px,-2px)}
+.artcard .go span:last-child,.evidence-tab .go span:last-child{transition:transform .2s}
+.artnote{width:100%;text-align:center;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px}
+/* connecting notes to other notes or evidence cards: + handle, dashed lilac lines, and × to unlink */
+.evnote .nplug{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;border:1.5px solid var(--accent-line);background:var(--paper);color:var(--accent);font-size:14px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;cursor:grab;touch-action:none;box-shadow:0 2px 5px rgba(0,0,0,.12);transition:transform .15s,background .15s,border-color .15s}
+.evnote .nplug:hover{transform:translateX(-50%) scale(1.12);background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.evnote textarea{padding-bottom:14px}
+body.notelinking,body.notelinking *{cursor:grabbing!important}
+svg.notedrag{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:45;overflow:visible}
+svg.notedrag path{fill:none;stroke:var(--accent);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.notedrop{outline:2px dashed var(--accent);outline-offset:3px}
+.evnote.notedrop{outline:2px solid var(--accent);outline-offset:4px;box-shadow:0 0 0 7px var(--accent-soft),0 8px 20px rgba(0,0,0,.13);animation:note-target-pulse .8s ease-in-out infinite alternate}
+@keyframes note-target-pulse{to{outline-offset:7px;box-shadow:0 0 0 10px var(--accent-soft),0 8px 20px rgba(0,0,0,.13)}}
+@media (prefers-reduced-motion:reduce){.evnote.notedrop{animation:none}}
+@media(max-width:760px){
+  .layer[aria-labelledby="l2"]{grid-template-columns:minmax(0,1fr)}
+  body.ev-open .layer[aria-labelledby="l2"]{--evidence-toolbar-space:148px}
+  .evidence-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .evidence-toolbar-item:last-child{grid-column:1/-1}
+}
+@media(max-width:520px){
+  body.ev-open .layer[aria-labelledby="l2"]{--evidence-toolbar-space:205px}
+  .evidence-toolbar{grid-template-columns:minmax(0,1fr);gap:10px}
+  .evidence-toolbar-item:last-child{grid-column:auto}
+}
+.wire.notelink{stroke:var(--accent);stroke-dasharray:4 5;opacity:.75}
+.notelinks{position:absolute;left:0;top:0;width:0;height:0;overflow:visible;z-index:6;pointer-events:none}
+.nlx{position:absolute;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;border:1px solid var(--accent-line);background:var(--paper);color:var(--muted);font-size:9px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;opacity:.45;transition:opacity .15s,color .15s,border-color .15s}
+.nlx:hover,.nlx:focus-visible{opacity:1;color:var(--warn);border-color:var(--warn);outline:none}

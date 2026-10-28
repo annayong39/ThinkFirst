@@ -1,0 +1,32 @@
+/* =====================================================================
+   ThinkFirst — SETTINGS MENU (gear icon, top right)
+   ===================================================================== */
+
+/* the gear button sits at the far right of the header */
+.setbtn{position:relative;flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0}
+.setbtn:hover{color:var(--ink);border-color:var(--accent-line)}
+.setbtn[aria-expanded="true"]{color:var(--accent);border-color:var(--accent)}
+/* small dot = no API key saved yet */
+.setdot{position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:var(--warn);border:1.5px solid var(--paper)}
+
+.setpop{position:fixed;inset:0;z-index:70;display:flex;justify-content:flex-end;align-items:flex-start;padding:calc(64px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+.setdim{position:absolute;inset:0;background:rgba(20,24,21,.28)}
+.setcard{position:relative;width:min(380px,100%);max-height:calc(100vh - 90px);overflow:auto;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 40px -16px rgba(0,0,0,.45);animation:svpop .35s var(--ease-pop) both}
+.sethead{display:flex;align-items:center;justify-content:space-between}
+.sethead h2{font-family:var(--f-display);font-weight:500;font-size:24px;margin:0}
+.setgroup{border:1px solid var(--line);border-radius:14px;padding:10px 12px 12px;margin:0;display:flex;flex-direction:column;gap:6px}
+.setgroup legend{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:0 4px}
+.setgroup label[for],.setlab{font-size:13px;font-weight:600;margin-top:4px}
+.setgroup input[type="text"],.setgroup input[type="password"]{flex:1;min-width:0;width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:14px;background:var(--bg);color:var(--ink)}
+.setgroup input:focus{outline:2.5px solid var(--accent);outline-offset:0}
+.setrow{display:flex;gap:8px;align-items:center}
+.sethint{margin:0;font-size:12px;line-height:1.45;color:var(--muted)}
+.setmsg{margin:0;font-size:12.5px;line-height:1.45;color:var(--accent);min-height:18px}
+
+/* segmented choices for theme and text size */
+.seg{display:flex;flex-wrap:wrap;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg label{flex:1;min-width:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;border-radius:999px;padding:6px 8px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seg input:checked + span{background:var(--lilac-line);color:var(--ink)}
+.seg input:focus-visible + span{outline:3px solid var(--accent);outline-offset:1px}

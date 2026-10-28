@@ -1,0 +1,9 @@
+/* Adjustable boundary between Evidence and Argue. */
+.layer[aria-labelledby="l3"] .section-resize-handle{position:absolute;z-index:9;top:-37px;left:0;width:100%;height:30px;display:flex;align-items:center;justify-content:center;padding:0;border:0;background:transparent;color:var(--accent);cursor:ns-resize;touch-action:none;user-select:none}
+.section-resize-handle::before{content:'';position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--accent-line);opacity:.65}
+.section-resize-handle span{position:relative;display:block;width:58px;height:22px;border:1px solid var(--accent-line);border-radius:999px;background:var(--paper);box-shadow:0 2px 7px rgba(0,0,0,.06)}
+.section-resize-handle span::before,.section-resize-handle span::after{content:'';position:absolute;left:50%;width:25px;height:2px;border-radius:999px;background:var(--accent);transform:translateX(-50%)}
+.section-resize-handle span::before{top:7px}
+.section-resize-handle span::after{top:12px}
+.section-resize-handle:hover span,.section-resize-handle:focus-visible span,.section-resize-handle.dragging span{background:var(--accent-soft);border-color:var(--accent)}
+.section-resize-handle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

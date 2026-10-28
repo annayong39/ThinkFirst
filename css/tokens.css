@@ -1,0 +1,92 @@
+/* =====================================================================
+   ThinkFirst — DESIGN TOKENS (from the ThinkFirst Brand Deck)
+   ---------------------------------------------------------------------
+   Every colour and font in the app comes from these variables.
+   Change a value here and it changes everywhere.
+
+   Fonts:   Lora (display headings)  +  DM Sans (everything else)
+   Palette: ink #2d362f · paper #fffaf0 · highlighter yellow #fdee75
+            lilac #ccbdf4 / #5b4a96 · mint #9edabe
+
+   Light mode is the brand's look. Dark mode (set in Settings) is a
+   matching dark version of the same palette.
+   ===================================================================== */
+
+:root {
+  color-scheme: light;
+  --ui-scale: 1;                         /* set by Settings → Font size */
+
+  /* surfaces + text */
+  --bg: #ffffff; --panel: #faf8f2; --paper: #fffaf0; --sheet: #ffffff;
+  --ink: #2d362f; --muted: #5f685c; --line: #e8e6df; --dot: #eee6d2; --rule: #eee6d2;
+  --edge: #b9b3a0;                       /* wires between cards */
+
+  /* brand accents */
+  --accent: #5b4a96; --accent-soft: #f3effc; --accent-line: #ccbdf4;
+  --green: #2f6b52; --on-green: #ffffff; --warn: #a14f2c;
+  --sun: #fff8cc; --sun-line: #eed770; --marker: #fdee75;
+  --focus: #eef9f6; /* very light teal: background of the section you're working in */
+  --mint: #e9f7f0; --mint-line: #9edabe; --lilac: #f3effc; --lilac-line: #ccbdf4;
+  --sky: #dbe7ee; --sky-line: #a8c2d1; --clay: #fbe9df; --clay-line: #e0b49c; --paper-line: #eee6d2;
+  --quote-bg: #fbe9df; --quote-fg: #7a4a1f;
+
+  /* each picked word gets its own pastel: card background, border, highlighter */
+  --t0-bg: #fffad6; --t0-ln: #eed770; --t0-mk: #fdee75;
+  --t1-bg: #e9f7f0; --t1-ln: #9edabe; --t1-mk: #bfe8d4;
+  --t2-bg: #f3effc; --t2-ln: #ccbdf4; --t2-mk: #ddd2f7;
+
+  /* Thinky the notebook mascot (same in both themes) */
+  --mull-body: #f3effc; --mull-line: #9e90c4; --mull-ink: #2d362f;
+
+  /* topic folders on the start page: front (f) and back (b) */
+  --media-f: #c9bbf2; --media-b: #a998e0;
+  --pol-f: #f4c2a6;   --pol-b: #e3a283;
+  --sci-f: #a9dfc5;   --sci-b: #7fc6a6;
+  --soc-f: #b9d6e8;   --soc-b: #8fb9d3;
+  --arts-f: #fbe77a;  --arts-b: #e9cf55;
+  --folder-ink: #2d362f;
+
+  --f-display: 'Lora', Georgia, 'Times New Roman', serif;
+  --f-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ease-pop: cubic-bezier(.3, 1.35, .5, 1);
+}
+
+/* ---------- dark mode: the same palette, at night ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #1b201c; --panel: #222823; --paper: #262d27; --sheet: #2a312b;
+    --ink: #ede8dc; --muted: #a7ae9f; --line: #3a423b; --dot: #333a33; --rule: #3a413b; --edge: #6a7266;
+    --accent: #c3b4f2; --accent-soft: #2f2a43; --accent-line: #6d5fa8;
+    --green: #8fd3b0; --on-green: #10261b; --warn: #f0a07c;
+    --sun: #3a3416; --sun-line: #8c7a2a; --marker: #6e621c;
+    --focus: #1c2b27;
+    --mint: #1f352a; --mint-line: #4f9478; --lilac: #2e2942; --lilac-line: #6d5fa8;
+    --sky: #1f2d36; --sky-line: #4b6b80; --clay: #3b2820; --clay-line: #8a5a43; --paper-line: #3a3a30;
+    --quote-bg: #3b2820; --quote-fg: #f2c3a2;
+    --t0-bg: #353018; --t0-ln: #8c7a2a; --t0-mk: #6e621c;
+    --t1-bg: #1f352a; --t1-ln: #4f9478; --t1-mk: #2f6a52;
+    --t2-bg: #2e2942; --t2-ln: #6d5fa8; --t2-mk: #4d4380;
+    --media-f: #4d4380; --media-b: #3a3266; --pol-f: #7a4a35; --pol-b: #5e3727;
+    --sci-f: #2f6a52; --sci-b: #23503e; --soc-f: #3c5a6d; --soc-b: #2c4352;
+    --arts-f: #6e621c; --arts-b: #544a14; --folder-ink: #ede8dc;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1b201c; --panel: #222823; --paper: #262d27; --sheet: #2a312b;
+  --ink: #ede8dc; --muted: #a7ae9f; --line: #3a423b; --dot: #333a33; --rule: #3a413b; --edge: #6a7266;
+  --accent: #c3b4f2; --accent-soft: #2f2a43; --accent-line: #6d5fa8;
+  --green: #8fd3b0; --on-green: #10261b; --warn: #f0a07c;
+  --sun: #3a3416; --sun-line: #8c7a2a; --marker: #6e621c;
+  --focus: #1c2b27;
+  --mint: #1f352a; --mint-line: #4f9478; --lilac: #2e2942; --lilac-line: #6d5fa8;
+  --sky: #1f2d36; --sky-line: #4b6b80; --clay: #3b2820; --clay-line: #8a5a43; --paper-line: #3a3a30;
+  --quote-bg: #3b2820; --quote-fg: #f2c3a2;
+  --t0-bg: #353018; --t0-ln: #8c7a2a; --t0-mk: #6e621c;
+  --t1-bg: #1f352a; --t1-ln: #4f9478; --t1-mk: #2f6a52;
+  --t2-bg: #2e2942; --t2-ln: #6d5fa8; --t2-mk: #4d4380;
+  --media-f: #4d4380; --media-b: #3a3266; --pol-f: #7a4a35; --pol-b: #5e3727;
+  --sci-f: #2f6a52; --sci-b: #23503e; --soc-f: #3c5a6d; --soc-b: #2c4352;
+  --arts-f: #6e621c; --arts-b: #544a14; --folder-ink: #ede8dc;
+}

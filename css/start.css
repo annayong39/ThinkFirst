@@ -1,0 +1,112 @@
+/* =====================================================================
+   ThinkFirst — START PAGE: question box + saved-example folders (shelf)
+   ===================================================================== */
+
+/* ---------- onboarding (added; the map below is unchanged) ---------- */
+body.onb #map,body.onb #steps,body.onb .words,body.onb #tidy,body.onb #reset{display:none!important}
+.onboard{display:none;max-width:860px;margin:0 auto;padding-block:40px 140px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body.onb .onboard{display:block}
+.ob-hero{font-family:var(--f-display);font-style:normal;font-weight:500;font-size:clamp(28px,4.6vw,42px);line-height:1.05;letter-spacing:-.5px;margin:6px 0 26px}
+.ob-sub{color:var(--muted);font-size:15px;line-height:1.5;margin:0 0 18px;max-width:560px}
+.ob-card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px 14px;box-shadow:0 6px 0 -3px var(--panel),0 7px 0 -3px var(--line)}
+.ob-card textarea{width:100%;min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;font-weight:500;letter-spacing:-.2px;background:var(--bg)}
+.ob-card textarea:focus{outline:2.5px solid var(--accent);outline-offset:0}
+.ob-card textarea::placeholder{color:var(--muted);opacity:.85}
+.ob-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.ob-row .sp{flex:1}
+.ob-err{font-size:12.5px;color:var(--warn)}
+.ob-sec{margin-top:96px;padding-top:18px;border-top:1px solid var(--line)}
+.ob-sechead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ob-sechead h2{font-family:var(--f-display);font-style:normal;font-weight:500;font-size:30px;line-height:1;margin:0}
+.ob-cats{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 16px}
+.ob-cats .chip{min-height:34px;padding:4px 12px;font-size:12.5px}
+.ob-cats .chip .n{opacity:.65;margin-left:4px;font-weight:500}
+.ob-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.ob-ex{position:relative;text-align:left;border:1.5px solid var(--paper-line);background:var(--paper);border-radius:16px;padding:12px 13px;display:flex;flex-direction:column;gap:7px;box-shadow:0 5px 14px rgba(0,0,0,.07);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.ob-ex:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.1)}
+.ob-ex .cat{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;border-radius:999px;padding:2px 8px;border:1px solid}
+.ob-ex .t{font-size:14.5px;font-weight:600;line-height:1.3}
+.ob-ex .note{font-size:13px;line-height:1.45;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ob-ex[aria-expanded="true"] .note{-webkit-line-clamp:unset;color:var(--ink)}
+.ob-ex .meta{font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
+.ob-ex .meta i{font-style:normal}
+.c-media{background:var(--sky);border-color:var(--sky-line)}
+.c-politics{background:var(--clay);border-color:var(--clay-line)}
+.c-science{background:var(--mint);border-color:var(--mint-line)}
+.c-society{background:var(--lilac);border-color:var(--lilac-line)}
+.c-arts{background:var(--sun);border-color:var(--sun-line)}
+.ob-empty{border:1.5px dashed var(--line);border-radius:16px;padding:22px;text-align:center;color:var(--muted);font-size:13.5px}
+.brand.home{cursor:pointer}
+/* ---------- saved examples: topic folders on a shelf (from the Shelf prototype) ---------- */
+.sv-shelf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;padding:22px 4px 0}
+.sv-folder{--f:var(--media-f);--b:var(--media-b);position:relative;display:block;width:100%;aspect-ratio:5/4;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:var(--ink);text-align:left;perspective:700px}
+.sv-folder .back{position:absolute;left:0;right:0;top:9%;bottom:0;background:var(--b);border-radius:6px 16px 16px 16px}
+.sv-folder .back::before{content:'';position:absolute;left:0;top:-11%;width:44%;height:16%;background:var(--b);border-radius:12px 14px 0 0}
+.sv-folder .sheet{position:absolute;left:11%;right:11%;top:17%;height:56%;background:var(--sheet);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 13px,var(--rule) 13px 15px);background-position:0 22px;background-repeat:no-repeat;background-size:70% 60%;background-origin:content-box;padding:0 0 0 12%;
+  transition:transform .35s var(--ease-pop)}
+.sv-folder .sheet.s1{transform:rotate(-4deg) translateY(4%)}
+.sv-folder .sheet.s2{transform:rotate(3deg) translate(4%,1%)}
+.sv-folder .sheet.s3{transform:rotate(-1deg) translate(-2%,-2%)}
+.sv-folder .front{position:absolute;left:0;right:0;bottom:0;height:67%;background:var(--f);border-radius:14px 14px 16px 16px;padding:12px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;
+  box-shadow:0 -1px 0 rgba(255,255,255,.55) inset,0 10px 22px -12px rgba(45,54,47,.35);transform-origin:50% 100%;transition:transform .4s var(--ease-pop)}
+.sv-folder .name{font-weight:700;font-size:15px;line-height:1.2}
+.sv-folder .count{font-size:12.5px;color:color-mix(in srgb,var(--ink) 70%,transparent)}
+.sv-folder:hover .sheet.s1{transform:rotate(-6deg) translateY(-6%)}
+.sv-folder:hover .sheet.s2{transform:rotate(5deg) translate(5%,-10%)}
+.sv-folder:hover .sheet.s3{transform:rotate(-1deg) translate(-2%,-14%)}
+.sv-folder.open .front{transform:rotateX(-28deg)}
+.sv-folder.open .sheet.s1{transform:rotate(-9deg) translate(-6%,-20%)}
+.sv-folder.open .sheet.s2{transform:rotate(8deg) translate(8%,-26%)}
+.sv-folder.open .sheet.s3{transform:rotate(-1deg) translate(0,-32%)}
+.sv-t-media{--f:var(--media-f);--b:var(--media-b)}.sv-t-politics{--f:var(--pol-f);--b:var(--pol-b)}.sv-t-science{--f:var(--sci-f);--b:var(--sci-b)}.sv-t-society{--f:var(--soc-f);--b:var(--soc-b)}.sv-t-arts{--f:var(--arts-f);--b:var(--arts-b)}
+.sv-drawer{margin-top:22px;border-radius:20px;padding:18px;background:color-mix(in srgb,var(--f) 38%,var(--bg));border:1.5px solid color-mix(in srgb,var(--b) 55%,var(--bg));transition:background .3s,border-color .3s}
+.sv-drawer .dh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.sv-drawer .dh h3{font-family:var(--f-display);font-weight:500;font-size:22px;margin:0}
+.sv-drawer .dh span{font-size:13px;color:var(--muted)}
+.sv-notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.sv-note{position:relative;display:flex;flex-direction:column;gap:8px;background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:14px 15px 13px;color:var(--ink);text-decoration:none;
+  box-shadow:0 6px 16px -10px rgba(45,54,47,.35);transition:transform .2s,box-shadow .2s;min-width:0;animation:svrise .5s var(--ease-pop) both}
+.sv-note:hover{transform:translateY(-3px);box-shadow:0 14px 24px -12px rgba(45,54,47,.4)}
+.sv-note h4{margin:0;font-size:16px;font-weight:700;line-height:1.25}
+.sv-note h4 mark{background:linear-gradient(180deg,transparent 40%,var(--marker) 40%,var(--marker) 92%,transparent 92%);color:inherit;padding:0 2px}
+.sv-note .sum{margin:0;font-size:14px;line-height:1.45;color:var(--ink)}
+.sv-note .meta{font-size:12.5px;line-height:1.4;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+.sv-note .go{margin-top:2px;padding-top:9px;border-top:1px dashed var(--rule);font-size:12.5px;font-weight:600;color:var(--accent);display:flex;justify-content:space-between;gap:8px}
+.sv-note[href]:hover .go{color:color-mix(in srgb,var(--accent) 72%,#21123f);text-decoration:underline;text-underline-offset:3px}
+.sv-note .go.unavailable{color:var(--muted);font-weight:400}
+.sv-note .go span:last-child{transition:transform .2s}
+.sv-note:hover .go:not(.unavailable) span:last-child{transform:translate(2px,-2px)}
+.sv-add{min-height:38px;padding:8px 16px}
+.sv-folder.fresh{animation:svpop .6s var(--ease-pop) both}
+@keyframes svpop{0%{opacity:0;transform:translateY(18px) scale(.7) rotate(-4deg)}60%{opacity:1;transform:translateY(-4px) scale(1.05)}100%{transform:none}}
+.sv-pop{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sv-dim{position:absolute;inset:0;background:rgba(45,54,47,.28);animation:svfade .25s both}
+@keyframes svfade{from{opacity:0}}
+.sv-dialog{position:relative;width:min(380px,100%);background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 40px -16px rgba(45,54,47,.45);animation:svpop .45s var(--ease-pop) both}
+.sv-dialog h3{font-family:var(--f-display);font-weight:500;font-size:22px;margin:0 0 4px}
+.sv-dialog label{font-size:13.5px;font-weight:600}
+.sv-dialog input{border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:16px;background:var(--bg);width:100%}
+.sv-dialog input:focus{outline:2.5px solid var(--accent);outline-offset:0}
+.sv-err{font-size:12.5px;color:var(--warn);min-height:16px}
+.sv-acts{display:flex;justify-content:flex-end;gap:8px;align-items:center}
+@keyframes svrise{from{opacity:0;transform:translateY(26px) scale(.94) rotate(-1.5deg)}to{opacity:1;transform:none}}
+@media (max-width:760px){.sv-shelf{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+@media (max-width:460px){.sv-shelf{grid-template-columns:repeat(2,minmax(0,1fr))}.sv-folder .name{font-size:13.5px}}
+
+/* folder labels: readable in dark mode; your own added topics keep dark text on their pastel */
+.sv-folder{color:var(--folder-ink)}
+.sv-folder[style*="--f"],[style*="--f"] .acat{color:#2d362f}
+
+/* Saved essays beneath the examples shelf and drawer. */
+.projects{margin-top:48px}
+.project-list{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+.project-card{display:flex;align-items:center;gap:20px;text-align:left;padding:20px;border:1.5px solid var(--accent-line);border-radius:16px;background:var(--paper);color:var(--ink);transition:box-shadow .2s,transform .2s}
+.project-main{display:flex;flex-direction:column;gap:12px;flex:1;min-width:0;text-align:left;border:0;padding:0;background:none;color:inherit;border-radius:6px}
+.project-actions{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex:none}
+.project-actions .project-action{min-width:190px;white-space:nowrap}
+@media(max-width:600px){.project-card{flex-direction:column;align-items:stretch}.project-actions{flex-direction:row;flex-wrap:wrap}}
+.project-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.project-title{font-size:17px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.project-card time{font-size:12px;color:var(--muted)}
+.project-open{font-size:12px;font-weight:600;color:var(--accent);margin-top:auto}
