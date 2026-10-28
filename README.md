@@ -1,5 +1,4 @@
 # ThinkFirst
-
 ThinkFirst is a General Paper (GP) essay planner for Singapore JC students.
 Students unpack the key words in a GP question, gather evidence, and (soon)
 build their argument on a mind map. **Thinky**, the notebook mascot, is an AI
